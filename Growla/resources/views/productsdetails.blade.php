@@ -13,7 +13,10 @@
     <section class="container">
 
       <article class="container" id="1">
-        <img class="img-thumbnail col-md-5" alt="Responsive image" src="/storage/beers/{{$beer->images}}" alt="cerveza blonde-ale">
+<div class="col-md-4">
+  <img class="img-thumbnail " alt="Responsive image" src="/storage/{{$beer->image}}" style="background-color:black "  alt="cerveza blonde-ale">
+</div>
+
         <div class="col-md-6">
           <h3>{{$beer->type}}</h3>
             <p>{{$beer->description}}<br><br>
@@ -26,19 +29,25 @@
               </ul>
             </p>
         </div>
-        <div >
+        <div class="col-md-2" >
                  <form class="" action="/deleteBeer" method="post">
                   {{csrf_field()}}
+                <div>
                   <input type="hidden" name="id" value="{{$beer->id}}">
+                </div>
+                <div >
                   <input type="submit" name="" value="Borrar birra">
+                </div>
                 </form>
-                <a href="/beer-edit/{{$beer->id}}">Editar</a>
+                <a href="/beer-edit/{{$beer->id}}/edit">Editar</a>
         </div>
       </article>
-              </ul>
-            </p>
+
+
         </div>
-      </article>
+
     </section>
-      </div>
+
+
+
 @endsection
