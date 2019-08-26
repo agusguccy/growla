@@ -37,6 +37,7 @@ Route::patch('/beer-edit/{id}', 'BeerController@update');
 Route::get('/Registro', 'RegisterController@Validator');
 Route::post('/Registro', 'RegisterController@Create');
 
+Route::post('/home', 'ActionController@logout');
 
 
 Route::get('/detalle/{id}', 'BeerController@detalle')->name('details');
