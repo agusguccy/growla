@@ -49,6 +49,17 @@
   <br>
   </span>
   @endif
+  <label for="">Color</label>
+  <br>
+  <select class="" name="color_id">
+    <br>
+    <option value="">Elegí un color</option>
+    @<?php foreach ($colors as $color): ?>
+    <option value="{{$color->id}}">{{$color->color}}</option>
+    <?php endforeach; ?>
+    </select>
+    <br>
+
 {{--aca va la opcion de COLORS--}}
 
     <br>
