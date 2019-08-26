@@ -84,9 +84,9 @@ public function delete(Request $req){
 //EDITA LOS DATOS DE LA BASE
 
 public function edit(Beer $beer){
-  //$beer = Beer::find($id);
-  //$vac = compact("beer");
-  return view ("beer-edit",compact('beer'));
+  $colors = Color::all();
+  $vac = compact("colors");
+  return view ("beer-edit",compact('beer'),$vac);
 }
 
 //ACTUALIZA LOS DATOS DE LA BASE
@@ -105,12 +105,14 @@ $data = request()->validate([
 if (request("image")) {
 $imagePath = request("image")->store("uploads","public");
 //Lo GUARDA EN UNA VARIABLE PARA USARLA DESPUES
+$beer->update(array_merge(
+  $data,
+  ["image"=> $imagePath],
+));
 }
 // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
- $beer->update(array_merge(
-   $data,
-   ["image"=> $imagePath],
- ));
+ $beer->update($data);
+ 
  $beers = Beer::all();
  $vac = compact("beers");
 return view("beers-list",$vac);
