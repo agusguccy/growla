@@ -26,30 +26,30 @@ Route::get('/profile', function () {
     return view('profile');
 });
 
+//RUTAS DE BEERS
+
 Route::get('/beers-list', 'BeerController@listado')->name('beers.list');
-Route::post('/deleteBeer', 'BeerController@delete');
-Route::get('/beer-edit/{id}', 'BeerController@edit');
-Route::patch('/beer-edit/{id}', 'BeerController@update');
-
-//Route::get('/faq', function () {
-//    return view('');
-//});
-Route::get('/Registro', 'RegisterController@Validator');
-Route::post('/Registro', 'RegisterController@Create');
-
-// Route::post('/home', 'ActionController@logout');
-
-
 Route::get('/detalle/{id}', 'BeerController@detalle')->name('details');
 Route::get('/new-beer', 'BeerController@createBeer');
-Route::post('/new-beer', 'BeerController@newbeer');
-// Route::get('/productos', "ProductosCotroller@listado"  {
-// return view("");
-// });
+Route::post('/new-beer', 'BeerController@uploadBeer');
+Route::post('/deleteBeer', 'BeerController@delete');
+Route::get('/beer-edit/{beer}/edit', 'BeerController@edit');
+Route::patch('/beer-edit/{beer}', 'BeerController@updateBeer');
 
-//Route::get('/producto/{id}' "ProductosCotroller@detalle" {
-//return view("");
-//});
+
+
+//RUTAS DEL REGISTRO/LOGIN/lOGOUT
+
+Route::get('/Registro', 'RegisterController@Validator');
+Route::post('/Registro', 'RegisterController@Create');
+<<<<<<< HEAD
+
+// Route::post('/home', 'ActionController@logout');
+=======
+Route::post('/home', 'ActionController@logout');
+>>>>>>> e8bcee2cbe07629eb01e1989236fd0d4cfcc54a9
+
+//RUTA DEL BUSCADOR
 
 Route::get('/search', 'SearchController@search')->name('search');
 
