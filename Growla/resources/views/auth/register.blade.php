@@ -107,11 +107,6 @@
                             <label for="country" class="col-md-12 text-center">{{ __('Pais') }}</label>
 
                               <select id="country" class=" form-control " name="country" value="{{ old('country') }}"  autocomplete="country" autofocus>
-                                  <option value="">Seleccione pais...</option>
-                                  <option value="ar">Argentina</option>
-                                  <option value="br">Brasil</option>
-                                  <option value="co">Colombia</option>
-                                  <option value="ur">Uruguay</option>
                               </select>
 
                                 @error('country')
@@ -121,6 +116,21 @@
                                 @enderror
                         </div>
                       </div>
+
+                      <div class="form-row col-md-10 col-md-offset-1 hidden">
+                        <div class="form-group col-md-8 padding-null @error('province') has-error @enderror text-center">
+                            <label for="province" class="col-md-12 text-center">{{ __('Provincia') }}</label>
+                              <select id="provinces" class=" form-control " name="provincia" value="{{ old('province') }}"  autocomplete="province" autofocus>
+                              </select>
+
+                              @error('province')
+                                  <span class="invalid-feedback" role="alert">
+                                      <strong>{{ $message }}</strong>
+                                  </span>
+                              @enderror
+                        </div>
+                      </div>
+
                       <div class="form-row col-md-10 col-md-offset-1">
                         <div class="form-group col-md-8 padding-null @error('file') has-error @enderror text-center">
                             <label for="file" class="col-md-12 text-center">{{ __('Foto de perfil') }}</label>

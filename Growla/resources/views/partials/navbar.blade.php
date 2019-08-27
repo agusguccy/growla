@@ -36,10 +36,16 @@ $navbar=[
 
                     <li  class="dropdown"><a href="/profile" class="dropdown-toggle" data-toggle="dropdown" id="perfil">Perfil<b class="caret"></b></a>
                         <ul style="left: -100%;" class="dropdown-menu">
+
                             <li><a href="/profile"><i class="icon-cog" ></i>Ver mi perfil</a></li>
                             <li><a href="#"><i class="icon-envelope" id="help"></i>Ayuda</a></li>
                             <li class="divider"></li>
-                            <li><a href="/logout"><i class="icon-off" id="logout"></i>Cerrar Sesión</a></li>
+                            <li>
+                              <form action="/logout" method="post">
+                                @csrf
+                                <button class="icon-off" type="submit" name="button">Cerrar Sesión</button>
+                              </form>
+                            </li>
                         </ul>
                     </li>
                 </ul>
