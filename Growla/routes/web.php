@@ -42,12 +42,12 @@ Route::patch('/beer-edit/{beer}', 'BeerController@updateBeer');
 
 Route::get('/Registro', 'RegisterController@Validator');
 Route::post('/Registro', 'RegisterController@Create');
-<<<<<<< HEAD
+// <<<<<<< HEAD
 
 // Route::post('/home', 'ActionController@logout');
-=======
-Route::post('/home', 'ActionController@logout');
->>>>>>> e8bcee2cbe07629eb01e1989236fd0d4cfcc54a9
+// =======
+// Route::post('/home', 'ActionController@logout');
+// >>>>>>> e8bcee2cbe07629eb01e1989236fd0d4cfcc54a9
 
 //RUTA DEL BUSCADOR
 

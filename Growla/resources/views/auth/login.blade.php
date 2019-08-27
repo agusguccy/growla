@@ -8,6 +8,13 @@
   .padding-null{
     padding: 0px !important;
   }
+  label{
+    color: rgba(255, 255, 255, 0.99);
+    font-size: 15px;
+  }
+  strong{
+    color: rgba(238, 187, 6, 0.96);
+  }
   form{
     background-color: rgba(74, 74, 74, 0.98);
     margin-top: 50px;

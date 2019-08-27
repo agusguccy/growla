@@ -48,13 +48,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
       $message = [
-        'required' => 'El campo :attribute es obligatorio',
-        'string' => 'El campo :attribute debe ser un texto',
-        'max' => 'El campo :attribute debe tener como maximo :max carácteres',
-        'min' => 'El campo :attribute debe tener como minimo :min carácteres',
-        'email' => 'El campo :attribute debe ser de formato Email',
-        'unique' => ':attribute ya se encuentra registrado',
-        'file' => 'El archivo :attribute debe ser de tipo jgp/jpeg/png',
+        'required' => 'El campo es obligatorio',
+        'string' => 'El campo debe ser un texto',
+        'max' => 'El campo debe tener como maximo :max carácteres',
+        'min' => 'El campo debe tener como minimo :min carácteres',
+        'email' => 'El campo debe ser de formato Email',
+        'unique' => 'La información ya se encuentra registrada',
+        'file' => 'El archivo  debe ser de tipo jgp/jpeg/png',
       ];
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:50'],
@@ -62,6 +62,7 @@ class RegisterController extends Controller
             'email' => ['required', 'string', 'email', 'max:50', 'unique:users,email'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'country' => ['required'],
+            'city' => ['required'],
             'foto' => ['required', 'image']
         ], $message);
     }
@@ -91,6 +92,7 @@ class RegisterController extends Controller
             'surname' => $data['surname'],
             'email' => $data['email'],
             'country' => $data['country'],
+            'city' => $data['city'],
             'avatar' => $imagenFinal,
             'password' => Hash::make($data['password']),
         ]);
