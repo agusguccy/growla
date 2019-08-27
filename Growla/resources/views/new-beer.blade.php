@@ -10,7 +10,7 @@
   {{csrf_field()}}
   <label for="">Tipo de cerveza</label>
 <br>
- <input type="text" name="type" value="">
+ <input type="text" name="type" value="{{ old('type') }}">
 <br>
   @if ($errors->has("type"))
 <span class="invalid-feedback" role="alert">
@@ -23,7 +23,7 @@
 
  <label for="">Descripcion</label>
  <br>
- <textarea name="description" rows="8" cols="21"></textarea>
+ <textarea name="description" rows="8" cols="21">{{ old('description') }}</textarea>
  <br>
  @if ($errors->has("description"))
 <span class="invalid-feedback" role="alert">
@@ -56,9 +56,12 @@
 <select class="" name="color_id">
   <br>
   <option value="">Elegí un color</option>
-  @<?php foreach ($colors as $color): ?>
-  <option value="{{$color->id}}">{{$color->color}}</option>
-  <?php endforeach; ?>
+  @foreach ($colors as $color)
+    <option
+      value="{{$color->id}}"
+      {{ old('color_id', "") == $color->id ? "selected" : null }}
+    >{{$color->color}}</option>
+  @endforeach
   </select>
   <br>
   <label for="">Insertá una imagen</label>
