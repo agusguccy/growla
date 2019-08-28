@@ -1,13 +1,3 @@
-<?php
-$navbar=[
- "Home"=>"home",
- "Birras"=>"beers-list",
- "Agregar cerveza"=>"new-beer",
- "FAQ"=>"faq",
- "Ingresá"=>"login",
- "Registrate"=>"register",
-]
-?>
 <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -20,11 +10,12 @@ $navbar=[
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
                  <ul class="nav navbar-nav">
-
-                       @foreach ($navbar as $titulo => $link)
-                                     <li><a href="/{{$link}} "> {{$titulo}} </a></li>
-                                 @endforeach
-
+                   <li><a href="/home "> Home </a></li>
+                   <li><a href="/beers-list "> Birras </a></li>
+                   <li><a href="/new-beer "> Agregar Cerveza </a></li>
+                   <li><a href="/faq "> FAQs </a></li>
+                   <li><a href="/login "> Ingresá </a></li>
+                   <li><a href="/register "> Register </a></li>
                  </ul>
 
 
