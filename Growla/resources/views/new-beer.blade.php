@@ -33,7 +33,7 @@
  @endif
  <label for="">IBU</label>
  <br>
-<input type="number" name="IBUs" value="">
+<input type="number" name="IBUs" value="{{ old('IBUs') }}">
 <br>
 @if ($errors->has("IBUs"))
 <span class="invalid-feedback" role="alert">
@@ -43,7 +43,7 @@
 @endif
 <label for="">Porcentaje de Alcohol</label>
 <br>
-<input type="number" name="alcohol_content" value="Ej:7.8">
+<input type="number" name="alcohol_content" value="{{ old('alcohol_content') }}">
 <br>
 @if ($errors->has("alcohol_content"))
 <span class="invalid-feedback" role="alert">
