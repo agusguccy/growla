@@ -1,3 +1,8 @@
+@if (session('adminError'))
+	<div class="alert alert-danger">
+		{{ session('adminError') }}
+	</div>
+@endif
 <nav class="navbar navbar-inverse">
       <div class="container-fluid">
         <div class="navbar-header">
@@ -14,7 +19,13 @@
                  <ul class="nav navbar-nav">
                    <li><a href="/home "> Home </a></li>
                    <li><a href="/beers-list "> Birras </a></li>
+                   @auth
+                   			@if (Auth::user()->isAdmin())
                    <li><a href="/new-beer "> Agregar Cerveza </a></li>
+                   	    @endif
+                   @endauth
+
+
                    <li><a href="/faq "> FAQs </a></li>
 
                  </ul>
