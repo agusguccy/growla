@@ -24,7 +24,7 @@ Route::get('/faq', function () {
 
 Route::get('/profile', function () {
     return view('profile');
-});
+})->name('profile')->middleware('auth');
 
 //RUTAS DE BEERS
 
@@ -51,7 +51,7 @@ Route::post('/Registro', 'RegisterController@Create');
 
 //RUTA DEL BUSCADOR
 
-Route::get('/search', 'SearchController@search')->name('search');
+Route::post('/search-results', 'SearchController@search');
 
 
 

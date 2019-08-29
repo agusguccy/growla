@@ -1,29 +1,35 @@
 <?php
-
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use App\Beer;
-
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
+use App\Beer;
 
 class SearchController extends Controller
 {
     public function search(Request $request)
     {
-      $request->validate([
-          'query' -> 'required|min3',
-      ])
+      //$searchBar = Input::get('searchBar');
 
-      $query = $request->input('query');
+      $searchBar = $request->get('searchBar');
 
-      // $beers = Beer::where('type', 'like', "%$query%")
-      //               ->orWhere('description', 'like', "%$query%")
-      //               ->orWhere('alcohol_content', 'like', "%$query%")
-      //               ->paginate(10);
+       if ($searchBar){
+         $beer = Beer::where('type', 'LIKE', '%' . $searchBar . '%')
+                      ->orWhere ('description', 'LIKE', '%' . $searchBar . '%')
+                      ->orWhere ('IBUs', 'LIKE', '%' . $searchBar . '%')
+                      ->orWhere ('alcohol_content', 'LIKE', '%' . $searchBar . '%')
+                      ->get();
 
-      $beers = Beer::search($query)->paginate(10);
+               if(count($beer) > 0){
+                  //return view('search-results')->withDetails($beer)->withQuery($searchBar);
+                //  return view('search-results')->with('beer',$beer);
+                return view('search-results', compact('beer'));
+               } else {
+                 return view('search-results')->withMessage("No se encontró ningún resultado");
+               }
+          return view('search-results')->withMessage('No se registró la búsqueda, pruebe nuevamente');
+       }
 
-      return view('search-results')->with('beers, $beers');
+
     }
-}
+};

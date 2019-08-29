@@ -40,6 +40,23 @@ input#query.search-box {
 
 }
 
+input[type=text] {
+  width: 100%;
+}
+
+.search {
+  overflow: auto;
+}
+
+.search input[type="text"] {
+  cursor: pointer;
+}
+
+@media screen and (max-width:640px){
+  .search {
+    display: block;
+  }
+}
 
 /*edicion del home*/
 body {

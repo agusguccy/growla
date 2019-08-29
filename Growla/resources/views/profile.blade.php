@@ -1,22 +1,56 @@
-
 @extends('template')
 
-@section('pageTitle', 'Profile')
+
+
+<html>
+<head>
+  <title>Perfil</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/css/profile.css">
+</head>
+
+<body>
 
 @section('contenidoPrincipal')
+  <div class="container" style="align-items: center; ">
+    <div class="row">
+        <div class="col-xs-12 col-sm-8 col-md-6">
+            <div class="well well-sm" id="well">
+                <div class="row" id="row">
+
+                    <div class="col-sm-6 col-md-4">
+
+                        <img src="{{ Auth::user()->avatar }}"  alt="imagen de usuario" class="img-rounded img-responsive" >
+                    </div>
+                    <div class="col-sm-6 col-md-8">
+                        <h4>{{ Auth::user()->name }} {{ Auth::user()->surname }} </h4>
+
+                        <small>Birra fan lvl 9000 <i class="fas fa-beer"></i></small>
+                      <br />
+                        <p class="p">
+                        </br>
+                            <i class="fas fa-envelope-open"></i> {{ Auth::user()->email }}
+                            <br />
+                            <i class="fab fa-facebook"></i> {{ Auth::user()->name }} {{ Auth::user()->surname }}
+                            <br />
+                        </p>
+
+                        <!-- <div class="btn-group">
+                            <button type="button" class="btn btn-primary">
+                                Editar</button> -->
+
+                        </div>
+                    </div>
 
 
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-    <div class="container">
-    		<div class="row">
-    			<div class="col-md-6">
-    				<br>
-    				<h2>Hola {{ $user->name }} </h2>
-    				<img src=" {{ $user->laImagenFinal }}" alt="imagen usuario">
-    				<br><br>
-    				<a href="#" class="btn btn-info"> {{ $user->email }} </a>
-    				<a href="#" class="btn btn-danger">Editar información</a>
-    			</div>
-    		</div>
-    	</div>
-  @endsection
+
+</body>
+</html>
+<script src="/js/app.js"></script>
+@endsection

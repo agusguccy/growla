@@ -21,15 +21,19 @@
 
         <div class="pull-right">
                 <ul class="nav pull-right">
-                  <form action="{{ route('search') }}" method="GET" class="search-form">
-                    <input type="text" name="query" id="query" value="{{ request()->input('query') }}" class="search-box" placeholder="Buscar">
-                  </form>
+                  <div class="search">
+                   <form action="{{ URL::to('/search-results') }}" method="POST" role="search">
+                    {{ csrf_field() }}
 
+                        <input type="text" class="form-control" name="searchBar"	placeholder="Buscar">
+                   </form>
+                  </div>
+                    @auth
                     <li  class="dropdown"><a href="/profile" class="dropdown-toggle" data-toggle="dropdown" id="perfil">Perfil<b class="caret"></b></a>
                         <ul style="left: -100%;" class="dropdown-menu">
 
                             <li><a href="/profile"><i class="icon-cog" ></i>Ver mi perfil</a></li>
-                            <li><a href="#"><i class="icon-envelope" id="help"></i>Ayuda</a></li>
+                            <li><a href="/faq"><i class="icon-envelope" id="help"></i>Ayuda</a></li>
                             <li class="divider"></li>
                             <li>
                               <form action="/logout" method="post">
@@ -39,6 +43,7 @@
                             </li>
                         </ul>
                     </li>
+                    @endauth
                 </ul>
           </div>
         </div>

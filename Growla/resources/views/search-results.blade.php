@@ -1,37 +1,14 @@
 @extends('template')
 
-@section('title','Search Results')
-
-
-@endsection
-
-@section('content');
-<link rel="stylesheet" href="{{ asset('css/search-results.css') }}" />
-
+@section('contenidoPrincipal');
+<link rel="stylesheet" href=href="/css/search-results.css" />
   <div class="container">
-    @if (session()->has('success_message'))
-      <div class="alert alert-success">
-          {{ session()->('success_message') }}
-      </div>
-    @endif
+    <div class="search-results-container container">
+      <h1>Resultado de búsqueda</h1>
+      @if(isset($beer))
+      <p class="search-results-count">Resultado(s):</p>
 
-    @if(count($errors)>0)
-      <div class="alert alert-danger">
-        <ul>
-          @foreach ($errors->all() as $error)
-          <li>{{ $error }}</li>
-          @endforeach
-        </ul>
-      </div>
-    @endif
-  </div>
-
-  <div class="search-results-container container">
-    <h1>Resultado de búsqueda</h1>
-    <p class="search-results-count">{{ $beers->total() }} resultado(s) para '{{ request()->input('query') }}'</p>
-
-    @if ($beers->total() > 0)
-    <table class="table table-bordered table-striped">
+      <table class="table table-bordered table-striped">
       <thead>
         <tr>
           <th>Tipo</th>
@@ -41,21 +18,25 @@
         </tr>
       </thead>
       <tbody>
-        @foreach ($beers as $beer)
+        @foreach ($beer as $oneBeer)
           <tr>
-            <th><a href="{{ route('details', $beer->slug) }}">{{ $beer->type }}</a></th>
-            <td>{{ str_limit($beer->description,80) }}</td>
-            <td>{{ $beer->IBUs }}</td>
-            <td>{{ $beer->alcohol_content }}</td>
+            <td>{{ $oneBeer->type }}</td>
+            <td>{{ str_limit($oneBeer->description,80) }}</td>
+            <td>{{ $oneBeer->IBUs }}</td>
+            <td>{{ $oneBeer->alcohol_content }}</td>
           </tr>
 
         @endforeach
       </tbody>
     </table>
+      @elseif(isset($message))
+			   <p>{{ $message }}</p>
 
-    {{ $beers->appends(request()->input())->links() }}
-    @endif
+
+      @endif
 
   </div>
+</div>
+
 
 @endsection
