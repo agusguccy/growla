@@ -1,3 +1,8 @@
+@if (session('adminError'))
+	<div class="alert alert-danger">
+		{{ session('adminError') }}
+	</div>
+@endif
 {{-- usa la plantilla de template.blade.php --}}
 @extends('template')
 
@@ -29,9 +34,10 @@
               </ul>
             </p>
         </div>
-        @if (Route::has('login'))
+        @auth
+             @if (Auth::user()->isAdmin())
 
-               @auth
+
                  <div class="col-md-2" >
                           <form class="" action="/deleteBeer" method="post">
                            {{csrf_field()}}
@@ -44,10 +50,9 @@
                          </form>
                          <a href="/beer-edit/{{$beer->id}}/edit">Editar</a>
                  </div>
+               @endif
+          @endauth
 
-               @endauth
-
-       @endif
       </article>
 
 
