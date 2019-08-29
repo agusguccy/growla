@@ -35,8 +35,11 @@
                             <br />
                         </p>
                         <div class="btn-group">
-                            <button type="button" href="/user-edit/{{ Auth::user()->id}}/edit" class="btn btn-primary">
+                          <form class="" action="/user-edit/{{ Auth::user()->id}}/edit" method="get">
+                            <button type="submit" class="btn btn-primary">
                                 Editar</button>
+                          </form>
+
 
                         <!-- <div class="btn-group">
                             <button type="button" class="btn btn-primary">
