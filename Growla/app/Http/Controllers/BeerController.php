@@ -105,14 +105,14 @@ $data = request()->validate([
 if (request("image")) {
 $imagePath = request("image")->store("uploads","public");
 //Lo GUARDA EN UNA VARIABLE PARA USARLA DESPUES
+
+}
+// ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
 $beer->update(array_merge(
   $data,
   ["image"=> $imagePath],
 ));
-}
-// ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
- $beer->update($data);
- 
+
  $beers = Beer::all();
  $vac = compact("beers");
 return view("beers-list",$vac);
