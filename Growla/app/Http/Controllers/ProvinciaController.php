@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Curl;
 
 
-class PovinciaController extends Controller
+class ProvinciaController extends Controller
 {
   public function selectProvince()
   {
