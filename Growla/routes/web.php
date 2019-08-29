@@ -42,6 +42,10 @@ Route::patch('/beer-edit/{beer}', 'BeerController@updateBeer');
 
 Route::get('/Registro', 'RegisterController@Validator');
 Route::post('/Registro', 'RegisterController@Create');
+Route::post('/profile', 'UserController@update_avatar');
+Route::get('/user-edit/{user}/edit', 'UserController@edit');
+Route::patch('user-edit/{user}', 'UserController@update');
+
 // <<<<<<< HEAD
 
 // Route::post('/home', 'ActionController@logout');

@@ -142,7 +142,6 @@ input[type=file]{
 }
 }
 @media only screen and (min-width: 1200px) {
-
 .container-general{
   height: 920px;
 }
@@ -159,63 +158,28 @@ input[type=file]{
 
 
 <div class="alineador">
-<form class="" action="/new-beer" method="post" enctype="multipart/form-data">
-{{csrf_field()}}
+<form  action="route('user-edit', $user)" method="post" enctype="multipart/form-data">
+  @csrf
+  @method('PATCH')
 <div class="container-general">
 
-<h1 class="titulo">Agregar Cerveza</h1>
+<h1 class="titulo">Editar Perfil</h1>
 
         <div class="formulario-birras">
           <div class="casilleros">
-          <label class="label" for="">Tipo de birra</label><br>
-<input type="text" class="input" name="type" value="{{ old('type') }}">
+          <label class="label" for="">Mail</label><br>
+<input type="email" class="input" name="email" value="{{ old ('email') ?? $user->email}}">
           </div>
-          @if ($errors->has("type"))
+          @if ($errors->has("email"))
         <span class="invalid-feedback" role="alert">
-            <strong>{{$errors->first("type")}}</strong>
+            <strong>{{$errors->first("email")}}</strong>
         <br>
         </span>
           @endif
         </div>
 
-        <div class="formulario-birras">
-          <div class="casilleros">
-          <label class="label" for="">IBUs</label><br>
-            <input class="input" type="number" name="IBUs" value="{{ old('IBUs') }}">
-          </div>
-          @if ($errors->has("IBUs"))
-          <span class="invalid-feedback" role="alert">
-            <strong>{{$errors->first("IBUs")}}</strong>
-          <br>
-          </span>
-          @endif
-        </div>
-        <div class="formulario-birras">
-          <div class="casilleros">
-          <label class="label" for="">Alcohol Content</label><br>
-<input type="number" class="input" name="alcohol_content" value="{{ old('alcohol_content') }}">
-          </div>
-          @if ($errors->has("alcohol_content"))
-          <span class="invalid-feedback" role="alert">
-            <strong>{{$errors->first("alcohol_content")}}</strong>
-          <br>
-          </span>
-          @endif
-        </div>
-        <div class="formulario-birras">
-          <div class="casilleros">
-          <label class="label" for="">Color</label><br>
-        <select class="select" name="color_id">
-          <option value="">Elegi un color</option>
-          @foreach ($colors as $color)
-            <option
-              value="{{$color->id}}"
-              {{ old('color_id', "") == $color->id ? "selected" : null }}
-            >{{$color->color}}</option>
-          @endforeach
-        </select>
-          </div>
-        </div>
+
+
         <div class="formulario-birras">
           <div class="casilleros">
           <label class="label" for="">Imagen</label><br>
@@ -228,20 +192,9 @@ input[type=file]{
           </span>
           @endif
         </div>
-        <div class="formulario-birras">
-          <div class="casilleros-desc">
-          <label class="label" for="">Description</label><br>
-<textarea class="textarea" name="description" rows="2" cols="50">{{ old('description') }}</textarea>
-          </div>
-          @if ($errors->has("description"))
-         <span class="invalid-feedback" role="alert">
-            <strong>{{$errors->first("description")}}</strong>
-         <br>
-         </span>
-          @endif
-          </div>
 
-<button type="submit"  class="botonera" name="button" >Agregar Birra</button>
+
+<button type="submit" class="botonera" name="button">Actualizar</button>
 
           </div>
         </div>

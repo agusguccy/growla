@@ -60,10 +60,10 @@ class UsersController extends Controller
    *
    * @return \Illuminate\Http\Response
    */
-  public function edit()
-  {
-      return view('profile')->with('user', auth()->user());
-  }
+  // public function edit()
+  // {
+  //     return view('profile')->with('user', auth()->user());
+  // }
 
   /**
    * Update the specified resource in storage.
@@ -71,39 +71,57 @@ class UsersController extends Controller
    * @param  \Illuminate\Http\Request  $request
    * @return \Illuminate\Http\Response
    */
-  public function update(Request $request)
-  {
-      $request->validate([
-          'name' => 'required|string|max:255',
-          'email' => 'required|string|email|max:255|unique:users,email,'.auth()->id(),
-          'password' => 'sometimes|nullable|string|min:6|confirmed',
+
+
+  public function update_avatar(Request $request){
+
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        $user = Auth::user();
+
+        $avatarName = $user->id.'_avatar'.time().'.'.request()->avatar->getClientOriginalExtension();
+
+        $request->avatar->storeAs('avatars',$avatarName);
+
+        $user->avatar = $avatarName;
+        $user->save();
+
+        return back()
+            ->with('success','La imagen se ha subido correctamente');
+
+    }
+
+
+    public function edit(User $user)
+    {
+        $users = User::all();
+        $vac = compact('users')
+        return view('user-edit', compact('user'),$vac);
+    }
+
+    public function update(User $user)
+    {
+      $data = request()->validate([
+      "email"  => "required",
+      "avatar" => ""
+
       ]);
 
-      $user = auth()->user();
-      $input = $request->except('password', 'password_confirmation');
 
-      if (! $request->filled('password')) {
-          $user->fill($input)->save();
 
-          return back()->with('success_message', 'Profile updated successfully!');
-      }
+        if (request("avatar")) {
+        $imagePath = request("avatar")->store("uploads","public");
+        //Lo GUARDA EN UNA VARIABLE PARA USARLA DESPUES
 
-      $user->password = bcrypt($request->password);
-      $user->fill($input)->save();
+        }
+        // ARRAY MERGE PERMITE MODIFICAR EL VALOR DE "IMAGE" PARA PASARLE EL DE $IMAGEPATH
+        $user->update(array_merge(
+          $data,
+          ["avatar"=> $imagePath],
+        ));
 
-      return back()->with('success_message', 'Profile (and password) updated successfully!');
-  }
-
-  /**
-   * Remove the specified resource from storage.
-   *
-   * @param  int  $id
-   * @return \Illuminate\Http\Response
-   */
-  public function destroy($id)
-  {
-      //
-  }
-}
-
+        return back();
+    }
 }

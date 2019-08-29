@@ -20,7 +20,7 @@
 
                     <div class="col-sm-6 col-md-4">
 
-                        <img src="{{ Auth::user()->avatar }}"  alt="imagen de usuario" class="img-rounded img-responsive" >
+                        <img src="/storage/fotos/{{ Auth::user()->avatar }}" alt="imagen de usuario" class="img-rounded img-responsive" >
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h4>{{ Auth::user()->name }} {{ Auth::user()->surname }} </h4>
@@ -34,6 +34,9 @@
                             <i class="fab fa-facebook"></i> {{ Auth::user()->name }} {{ Auth::user()->surname }}
                             <br />
                         </p>
+                        <div class="btn-group">
+                            <button type="button" href="/user-edit/{{ Auth::user()->id}}/edit" class="btn btn-primary">
+                                Editar</button>
 
                         <!-- <div class="btn-group">
                             <button type="button" class="btn btn-primary">
