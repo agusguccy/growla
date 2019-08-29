@@ -4,7 +4,8 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class is_admin
+use Illuminate\Support\Facades\Redirect;
+class is_Admin
 {
     /**
      * Handle an incoming request.
@@ -15,9 +16,9 @@ class is_admin
      */
     public function handle($request, Closure $next)
     {
-        User=\Auth::user();
-        If($user->is_admin ¡=1){
-        Return redirect()->back()->with([‘error’,’No tenes privilegios de Administrador’]);
+        $user=\Auth::user();
+        If(!$user->isAdmin()){
+        Return redirect()->back()->with(['error','No tenes privilegios de Administrador']);
         }
         return $next($request);
     }
