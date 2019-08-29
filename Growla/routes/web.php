@@ -30,7 +30,7 @@ Route::get('/profile', function () {
 
 Route::get('/beers-list', 'BeerController@listado')->name('beers.list');
 Route::get('/detalle/{id}', 'BeerController@detalle')->name('details');
-Route::get('/new-beer', 'BeerController@createBeer');
+Route::get('/new-beer', 'BeerController@createBeer')->middleware('auth','is_Admin');
 Route::post('/new-beer', 'BeerController@uploadBeer');
 Route::post('/deleteBeer', 'BeerController@delete');
 Route::get('/beer-edit/{beer}/edit', 'BeerController@edit');
