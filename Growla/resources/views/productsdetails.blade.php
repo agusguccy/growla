@@ -29,18 +29,25 @@
               </ul>
             </p>
         </div>
-        <div class="col-md-2" >
-                 <form class="" action="/deleteBeer" method="post">
-                  {{csrf_field()}}
-                <div>
-                  <input type="hidden" name="id" value="{{$beer->id}}">
-                </div>
-                <div >
-                  <input type="submit" name="" value="Borrar birra">
-                </div>
-                </form>
-                <a href="/beer-edit/{{$beer->id}}/edit">Editar</a>
-        </div>
+        @if (Route::has('login'))
+
+               @auth
+                 <div class="col-md-2" >
+                          <form class="" action="/deleteBeer" method="post">
+                           {{csrf_field()}}
+                         <div>
+                           <input type="hidden" name="id" value="{{$beer->id}}">
+                         </div>
+                         <div >
+                           <input type="submit" name="" value="Borrar birra">
+                         </div>
+                         </form>
+                         <a href="/beer-edit/{{$beer->id}}/edit">Editar</a>
+                 </div>
+
+               @endauth
+
+       @endif
       </article>
 
 
