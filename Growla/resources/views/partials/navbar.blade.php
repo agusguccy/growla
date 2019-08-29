@@ -9,15 +9,27 @@
           <img src="\images\Growla_logo_circulo_fondoblanco.png" alt="logo" class="navbar-brand">
         </div>
         <div class="collapse navbar-collapse" id="myNavbar">
+          @if (Route::has('login'))
+                                @auth
                  <ul class="nav navbar-nav">
                    <li><a href="/home "> Home </a></li>
                    <li><a href="/beers-list "> Birras </a></li>
                    <li><a href="/new-beer "> Agregar Cerveza </a></li>
                    <li><a href="/faq "> FAQs </a></li>
-                   <li><a href="/login "> Ingresá </a></li>
-                   <li><a href="/register "> Register </a></li>
-                 </ul>
 
+                 </ul>
+          @else
+          <ul class="nav navbar-nav">
+            <li><a href="/home "> Home </a></li>
+            <li><a href="/beers-list "> Birras </a></li>
+            <li><a href="/faq "> FAQs </a></li>
+            <li><a href="/login "> Ingresá </a></li>
+            @if (Route::has('register'))
+                                        <li><a href="/register "> Register </a></li>
+
+                                    @endif
+          </ul>
+@endauth
 
         <div class="pull-right">
                 <ul class="nav pull-right">
@@ -46,6 +58,7 @@
                     @endauth
                 </ul>
           </div>
+        @endif
         </div>
           </div>
         </nav>
